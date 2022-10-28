@@ -14,15 +14,15 @@ def index():
 
 @app.route("/me")
 def me():
-    return render_templates("me.html")
+    return render_template("me.html")
 
 @app.route("/leader")
 def leader():
-    return render_templates("領頭羊經歷.html")   
+    return render_template("領頭羊經歷.html")   
 
 @app.route("/work")
 def work():
-    return render_templates("工作介紹.html")
+    return render_template("工作介紹.html")
 
 
 @app.route("/test")
