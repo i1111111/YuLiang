@@ -66,12 +66,9 @@ def search():
                 result += dict["Leacture"] + "老師開的" + dict["Course"] + "課程,每週"
                 result += dict["Time"] + "於" + dict["Room"] + "上課<br>"
 
-        if result == "":
-            result = "抱歉，查無相關條件的選修課程"
-
         return result
     else:
-        return render_template("search.html")
+        result = "抱歉，查無相關條件的選修課程"
 
 if __name__ == "__main__":
     app.run()
