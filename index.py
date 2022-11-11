@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    homepage = "<h1>資管二A 411017022 吳育樑2的的求職相關資訊</h1>"
+    homepage = "<h1>資管二A 411017022 吳育樑的的求職相關資訊</h1>"
     
     homepage += "<a href=/me>我的個人簡介</a><br>"
 
@@ -52,8 +52,9 @@ def job():
 def search():
     if request.method == "POST":
         cond = request.form["keyword"]
-        result = "您輸入的課程關鍵字事:" + cond
-
+        result = "您輸入的課程關鍵字:" + cond
+        teacher = request.form["name"]
+        result = "您輸入的教師關鍵字:" + teacher
 
         db = firestore.client()
         collection_ref = db.collection("111")
@@ -61,12 +62,12 @@ def search():
         result= ""
         for doc in docs:
             dict = doc.to_dict()
-            if cond in dict["Course"]:
+            if cond in dict["Course"] and teacher in dict["Leacture"] :
                 result += dict["Leacture"] + "老師開的" + dict["Course"] + "課程,每週"
                 result += dict["Time"] + "於" + dict["Room"] + "上課<br>"
 
         if result == "":
-            result = "sorry....."
+            result = "抱歉，查無相關條件的選修課程"
 
         return result
     else:
