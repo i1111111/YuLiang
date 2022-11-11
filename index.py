@@ -53,7 +53,7 @@ def search():
     if request.method == "POST":
         cond = request.form["keyword"]
         result = "您輸入的課程關鍵字:" + cond
-        teacher = request.form["name"]
+        teacher = request.form["teacher"]
         result = "您輸入的教師關鍵字:" + teacher
 
         db = firestore.client()
